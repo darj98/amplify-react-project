@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { Amplify } from 'aws-amplify';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
+
+function App({ signOut, user }) {
+    Teste();
+    return (
+        <>
+            <div class="user-logged">
+                <div class="teste">
+                    <h1 class="texto-final">
+                        Olá, Você foi autenticado com sucesso!
+                    </h1>
+                    <button class="button" onClick={signOut}>
+                        Sign out
+                    </button>
+                </div>
+            </div>
+        </>
+    );
 }
 
-export default App;
+function Teste() {
+    // Get HTML head element
+    var head = document.getElementsByTagName('HEAD')[0];
+
+    // Create new link Element
+    var link = document.createElement('link');
+
+    // set the attributes for link element
+    link.rel = 'stylesheet';
+
+    link.type = 'text/css';
+
+    link.href = 'index.css';
+
+    // Append link element to HTML head
+    head.appendChild(link);
+}
+
+export default withAuthenticator(App);
