@@ -7,7 +7,7 @@ import awsExports from './aws-exports';
 Amplify.configure(awsExports);
 
 function App({ signOut, user }) {
-    Teste();
+    cssUse();
     return (
         <>
             <div class="user-logged">
@@ -24,7 +24,7 @@ function App({ signOut, user }) {
     );
 }
 
-function Teste() {
+function cssUse() {
     // Get HTML head element
     var head = document.getElementsByTagName('HEAD')[0];
 
